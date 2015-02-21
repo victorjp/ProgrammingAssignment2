@@ -19,16 +19,16 @@ CreateMatrix <- function(v) {
   }
 PrintMatrix <- function() x
 
-GetInverse <- function(y) {
-    # If (det(y)==0) { return "Matrix non invertible"}
-    inverse <<- solve(y)  #gets the inverse of the matrix and stores it in the cache
+CalcInverse <- function() {
+    ## If (det(x)==0) message("Matrix non invertible")
+    inverse <<- solve(x)  #gets t
   
   }
 PrintInverse <- function() inverse
 
 #output of the CreateMatrix function
 list(CreateMatrix = CreateMatrix, PrintMatrix = PrintMatrix,
-     GetInverse = GetInverse,
+     CalcInverse = CalcInverse,
      PrintInverse = PrintInverse)  
 
 
@@ -43,6 +43,27 @@ cacheSolve <- function(x, ...) {
 ## will get the inverse of the Matrix created above, but first it will validat
 ## is the matrix is the same and the inverse already exist, it would returned
 # the cache one, otherwise it will do the math
+  
+ # if (identical(y,x)==FALSE) {
+    
+#  mesage("Matrix changed, impossible to retrieve from cache")  
+    
+ # }  This condition is for the matriz change or not
+  
+  if (!is.null(x$PrintInverse())) {
+    message("getting cached matrix")
+    x$PrintInverse()
+    
+    
+  }
+  else  {
+    x$CalcInverse()
+    x$PrintInverse()
+  }
+  
+    
+    
+
   
   ## Return a matrix that is the inverse of 'x'
 }
